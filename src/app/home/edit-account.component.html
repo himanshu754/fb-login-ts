@@ -1,0 +1,26 @@
+﻿<h2>Edit Account</h2>
+<p>
+  Updating your info here only changes it in the Angular example app, it does
+  not (and cannot) change anything on Facebook itself.
+</p>
+<form *ngIf="account" [formGroup]="form" (ngSubmit)="saveAccount()">
+  <div class="mb-3">
+    <label class="form-label">Facebook Id</label>
+    <div>{{ account.facebookId }}</div>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Name</label>
+    <input
+      type="text"
+      formControlName="name"
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+    />
+    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+      <div *ngIf="f.name.errors.required">Name is required</div>
+    </div>
+  </div>
+</form>
+<div *ngIf="!account" class="text-center p-3">
+  <span class="spinner-border spinner-border-lg align-center"></span>
+</div>
